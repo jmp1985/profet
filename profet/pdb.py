@@ -23,9 +23,14 @@ class PDB_DB:
             self.results = perform_search(search_operator, self.return_type)
 
         pdb_id = self.results[0]
-        pdb_file = pypdb.clients.pdb.pdb_client.get_pdb_file(pdb_id, filetype)
+        pdb_file = pypdb.clients.pdb.pdb_client.get_pdb_file(
+            pdb_id, 
+            pypdb.clients.pdb.pdb_client.PDBFileType(filetype)
+        )
+
+        filename = "%s.%s" % (pdb_id, filetype)
         file_dir = file_dir + "." + filetype
         if file_save:
-            open(file_dir, 'wb').write(pdb_file)
+            open(file_dir, 'w').write(pdb_file)
 
-        return pdb_file
+        return filename, pdb_file
