@@ -49,16 +49,16 @@ class Alphafold_DB:
         af_id = self.df.loc[self.df['Uniprot_ID'] == uniprot_id.upper()]["AF_ID"].to_numpy()[0]
         version = self.df.loc[self.df['Uniprot_ID'] == uniprot_id.upper()]["version"].to_numpy()[0]
 
-        filename = af_id + "-model_v" + str(version) + "." + filetype
-        url = "https://alphafold.ebi.ac.uk/files/" + filename
+        url = "https://alphafold.ebi.ac.uk/files/" + af_id + "-model_v" + str(version) + "." + filetype
         file = requests.get(url)
+        print(url)
         if len(file.content) < 200:
             url = self.get_file_url(uniprot_id, filetype)
             file = requests.get(url)
         file_dir = file_dir + "." + filetype
         if file_save:
-            open(file_dir, 'w').write(file.text)
+            open(file_dir, 'wb').write(file.text)
 
-        return filename, file.text
+        return file.text
 
 
