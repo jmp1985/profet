@@ -9,7 +9,7 @@ Option: go straight to alphafold or to pdb
 from profet import Fetcher
 
 ONLY_ALPHAFOLD = "F4HvG8"
-ONLY_PDB = ""
+ONLY_PDB = "4V1W"
 
 
 def test_create_default_fetcher():
