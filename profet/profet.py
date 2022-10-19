@@ -7,7 +7,7 @@ class Fetcher:
         self.type = main_db
         self.pdb = PDB_DB()
         self.alpha = Alphafold_DB()
-        self.search_results = {}
+        self.search_results = {} # type: ignore
         self.save_directory = ""
 
     def check_db(self, uniprot_id: str):

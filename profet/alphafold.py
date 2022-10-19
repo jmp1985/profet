@@ -88,6 +88,6 @@ class Alphafold_DB:
 
         file_dir = file_dir + "." + filetype
         if file_save:
-            open(file_dir, "wb").write(file.text)
+            open(file_dir, "wb").write(file.content)
 
         return file.text
