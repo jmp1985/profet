@@ -12,7 +12,7 @@ class Fetcher:
 
     """
 
-    def __init__(self, main_db: str = "pdb", save_directory: str = None):
+    def __init__(self, main_db: str = "pdb", save_directory: str = "."):
         """
         Initialise the fetcher
 
@@ -98,7 +98,7 @@ class Fetcher:
         """
 
         # Get the PDB cache
-        cache = PDBFileCache(directory=self.save_directory)
+        cache = self.cache()
 
         # If the file is already downloaded then use that, otherwise search in
         # the PDB or alphafold databases
@@ -198,7 +198,7 @@ class Fetcher:
 
         """
         # Get the PDB cache
-        cache = PDBFileCache(directory=self.save_directory)
+        cache = self.cache()
         identifier, _, _ = self.pdb.get_pdb(uniprot_id, filetype="pdb")
         if uniprot_id in cache:
             filename = cache[uniprot_id]

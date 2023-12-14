@@ -52,7 +52,7 @@ def get_parser(parser: ArgumentParser = None) -> ArgumentParser:
     parser.add_argument(
         "--save_directory",
         type=str,
-        default=os.path.abspath(os.path.expanduser("~/.cache/pdb")),
+        default=os.path.abspath("."),
         dest="save_directory",
         help="The directory to save the PDB files.",
     )
