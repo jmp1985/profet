@@ -1,5 +1,5 @@
 from urllib.request import urlretrieve
-from rcsbsearchapi import TextQuery
+from rcsbapi.search import TextQuery
 
 
 class PDB_DB:
