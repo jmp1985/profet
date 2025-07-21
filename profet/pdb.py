@@ -66,7 +66,7 @@ class PDB_DB:
 
         """
 
-        filetype = FileType(filetype)
+        filetype = str(FileType(filetype))
         uniprot_id = uniprot_id.upper()
         url = f"https://files.rcsb.org/download/{uniprot_id}.{filetype}"
         return url

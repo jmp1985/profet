@@ -95,7 +95,7 @@ class Alphafold_DB:
             The URL of the file to download
 
         """
-        filetype = FileType(filetype)
+        filetype = str(FileType(filetype))
 
         uniprot_id = uniprot_id.upper()
         af_id = "AF-" + uniprot_id + "-F1"
