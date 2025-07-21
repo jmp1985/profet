@@ -108,7 +108,7 @@ class Alphafold_DB:
             + "-model_v"
             + str(version)
             + "."
-            + str(filetype)
+            + filetype.name
         )
 
         return url
