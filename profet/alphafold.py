@@ -9,6 +9,7 @@ find cif, download that file"""
 from requests_html import HTMLSession
 import requests
 from bs4 import BeautifulSoup
+from .enums import FileType
 
 
 class Alphafold_DB:
@@ -40,11 +41,13 @@ class Alphafold_DB:
 
         """
         uniprot_id = uniprot_id.upper()
-        url = self.make_url(uniprot_id, "pdb")
+        url = self.make_url(uniprot_id, FileType.pdb)
         r = requests.get(url)
         return r.status_code != 404
 
-    def get_file_url(self, uniprot_id: str, filetype: str = "cif") -> str:
+    def get_file_url(
+        self, uniprot_id: str, filetype: FileType = FileType.cif
+    ) -> str:
         """
         Get file url relative to an id from the the Alphafold entry page
 
@@ -56,6 +59,7 @@ class Alphafold_DB:
             The URL of the file to download
 
         """
+        filetype = FileType(filetype)
 
         # Do we recognise the filetpye, otherwise raise an exception.
         if filetype in ["pdb", "cif"]:
@@ -77,7 +81,9 @@ class Alphafold_DB:
         # Return the URL
         return url["href"]
 
-    def make_url(self, uniprot_id: str, filetype: str = "cif") -> str:
+    def make_url(
+        self, uniprot_id: str, filetype: FileType = FileType.cif
+    ) -> str:
         """
         Make the URL for the protein
 
@@ -89,6 +95,7 @@ class Alphafold_DB:
             The URL of the file to download
 
         """
+        filetype = FileType(filetype)
 
         uniprot_id = uniprot_id.upper()
         af_id = "AF-" + uniprot_id + "-F1"
@@ -109,7 +116,7 @@ class Alphafold_DB:
     def get_pdb(
         self,
         uniprot_id: str,
-        filetype: str = "cif",
+        filetype: FileType = FileType.cif,
     ) -> tuple:
         """
         Returns pdb/cif as strings, saves to file if requested.
@@ -123,6 +130,7 @@ class Alphafold_DB:
             Tuple containing the filename and file from the database
 
         """
+        filetype = FileType(filetype)
         # af_id = self.df.loc[self.df['Uniprot_ID'] == uniprot_id.upper()]["AF_ID"].to_numpy()[0]
         # version = self.df.loc[self.df['Uniprot_ID'] == uniprot_id.upper()]["version"].to_numpy()[0]
         # af_id = "AF-"+uniprot_id+"-F1"

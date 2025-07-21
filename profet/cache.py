@@ -1,5 +1,6 @@
 import json
 import os
+from .enums import FileType
 
 
 class PDBFileCache(object):
@@ -35,7 +36,7 @@ class PDBFileCache(object):
         # The manifest filename
         self.manifest = os.path.join(self.directory, "manifest.txt")
 
-    def path(self, uniprot_id: str, filetype: str = "cif") -> str:
+    def path(self, uniprot_id: str, filetype: FileType = FileType.cif) -> str:
         """
         Get the proposed path
 
@@ -47,6 +48,7 @@ class PDBFileCache(object):
             The absolute path
 
         """
+        filetype = FileType(filetype)
         assert filetype in ["pdb", "cif"]
         return os.path.join(self.directory, uniprot_id.lower()) + "." + filetype
 
@@ -64,7 +66,7 @@ class PDBFileCache(object):
         return [
             filename
             for filename in [
-                self.path(uniprot_id, filetype) for filetype in ["pdb", "cif"]
+                self.path(uniprot_id, filetype) for filetype in FileType
             ]
             if os.path.exists(filename)
         ]
@@ -137,7 +139,11 @@ class PDBFileCache(object):
                 yield uniprot_id, self.path(uniprot_id, filetype[1:])
 
     def _update_manifest(
-        self, uniprot_id: str, fileorigin: str, filetype: str, filename: str
+        self,
+        uniprot_id: str,
+        fileorigin: str,
+        filetype: FileType,
+        filename: str,
     ):
         """
         Update the manifest file
@@ -149,6 +155,7 @@ class PDBFileCache(object):
             filename: The filename
 
         """
+        filetype = FileType(filetype)
 
         # Read the current manifest
         if os.path.exists(self.manifest):
