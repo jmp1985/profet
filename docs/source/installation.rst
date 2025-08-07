@@ -12,7 +12,7 @@ fixes, install directly from GitHub using:
 
 .. code-block:: bash
 
-  pip install git+git://github.com/alan-turing-institute/profet`
+  pip install git+git://github.com/ccpem/profet`
 
 Test the installation, navigate to the root directory and run
 

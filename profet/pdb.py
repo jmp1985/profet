@@ -1,5 +1,6 @@
 from urllib.request import urlretrieve
 from rcsbapi.search import TextQuery
+from .enums import FileType
 
 
 class PDB_DB:
@@ -50,7 +51,9 @@ class PDB_DB:
             return True
         return False
 
-    def make_url(self, uniprot_id: str, filetype: str = "pdb") -> str:
+    def make_url(
+        self, uniprot_id: str, filetype: FileType = FileType.pdb
+    ) -> str:
         """
         Make the URL for the protein
 
@@ -63,14 +66,15 @@ class PDB_DB:
 
         """
 
+        filetype = FileType(filetype)
         uniprot_id = uniprot_id.upper()
-        url = f"https://files.rcsb.org/download/{uniprot_id}.{filetype}"
+        url = f"https://files.rcsb.org/download/{uniprot_id}.{filetype.name}"
         return url
 
     def get_pdb(
         self,
         uniprot_id: str,
-        filetype: str = "cif",
+        filetype: FileType = FileType.cif,
     ) -> tuple:
         """
         Returns pdb/cif as strings, saves to file if requested
@@ -84,6 +88,7 @@ class PDB_DB:
 
         """
 
+        filetype = FileType(filetype)
         if not self.results:
             self.results = [self.uniprot_id_to_pdb_id(uniprot_id)]
 
@@ -97,9 +102,9 @@ class PDB_DB:
                 filedata = file.read()
         except Exception:
             if filetype == "pdb":
-                filetype = "cif"
+                filetype = FileType.cif
             else:
-                filetype = "pdb"
+                filetype = FileType.pdb
             url = self.make_url(pdb_id, filetype)
             filename, result = urlretrieve(url)
             with open(filename) as file:

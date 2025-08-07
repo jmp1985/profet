@@ -2,6 +2,7 @@ from .alphafold import Alphafold_DB
 from .pdb import PDB_DB
 from .cache import PDBFileCache
 from .cleaver import Cleaver
+from .enums import FileType
 import os
 
 
@@ -54,7 +55,7 @@ class Fetcher:
     def file_from_db(
         self,
         prot_id: str,
-        filetype: str = "cif",
+        filetype: FileType = FileType.cif,
         db: str = "pdb",
     ) -> tuple:
         """
@@ -69,6 +70,7 @@ class Fetcher:
             Tuple containing the filename and file from the database
 
         """
+        filetype = FileType(filetype)
         return {"pdb": self.pdb.get_pdb, "alphafold": self.alpha.get_pdb}[db](
             prot_id, filetype=filetype
         )
@@ -76,7 +78,7 @@ class Fetcher:
     def get_file(
         self,
         uniprot_id: str,
-        filetype: str = "cif",
+        filetype: FileType = FileType.cif,
         filesave: bool = False,
         db: str = "pdb",
     ) -> tuple:
@@ -96,6 +98,7 @@ class Fetcher:
             2. File from the database, or None if it is not available in any database.
 
         """
+        filetype = FileType(filetype)
 
         # Get the PDB cache
         cache = PDBFileCache(directory=self.save_directory)
@@ -211,7 +214,7 @@ class Fetcher:
         """
         # Get the PDB cache
         cache = PDBFileCache(directory=self.save_directory)
-        identifier, _, _ = self.pdb.get_pdb(uniprot_id, filetype="cif")
+        identifier, _, _ = self.pdb.get_pdb(uniprot_id, filetype=FileType.cif)
         if uniprot_id in cache:
             filename = cache[uniprot_id]
             signal_list = self.Cleaver.signal_residuenumbers_requester(

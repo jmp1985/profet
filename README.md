@@ -5,9 +5,9 @@ A Python 3  **pro**tein structure **fet**cher. Retrieves the cif or pdb files fr
 [![PyPI version shields.io](https://img.shields.io/pypi/v/profet.svg)](https://pypi.python.org/pypi/profet/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/profet.svg)](https://pypi.python.org/pypi/profet/)
 
-[![Building](https://github.com/alan-turing-institute/profet/actions/workflows/python-package.yml/badge.svg)](https://github.com/alan-turing-institute/profet/actions/workflows/python-package.yml)
-[![Publishing](https://github.com/alan-turing-institute/profet/actions/workflows/python-publish.yml/badge.svg)](https://github.com/alan-turing-institute/profet/actions/workflows/python-publish.yml)
-[![Documentation](https://github.com/alan-turing-institute/profet/actions/workflows/sphinx.yml/badge.svg)](https://github.com/alan-turing-institute/profet/actions/workflows/sphinx.yml)
+[![Building](https://github.com/ccpem/profet/actions/workflows/python-package.yml/badge.svg)](https://github.com/ccpem/profet/actions/workflows/python-package.yml)
+[![Publishing](https://github.com/ccpem/profet/actions/workflows/python-publish.yml/badge.svg)](https://github.com/ccpem/profet/actions/workflows/python-publish.yml)
+[![Documentation](https://github.com/ccpem/profet/actions/workflows/sphinx.yml/badge.svg)](https://github.com/ccpem/profet/actions/workflows/sphinx.yml)
 
 ## Dependencies
 
@@ -38,7 +38,7 @@ pip install profet
 To install the development version, which contains the latest features and fixes, install directly from GitHub using:
 
 ```sh
-pip install git+git://github.com/alan-turing-institute/profet
+pip install git+git://github.com/ccpem/profet
 ```
 
 To test the installation, you need to have pytest and pytest-cov packagages installed which can be done as follows.
@@ -128,11 +128,11 @@ a .pdb file. The file will be cached in the "~/.pdb" directory for future use.
 
 ## Documentation
 
-You can find more documentation including a description of the python api [here](https://alan-turing-institute.github.io/profet/).
+You can find more documentation including a description of the python api [here](https://ccpem.github.io/profet/).
 
 ## Issues and Feature Requests
 
-If you run into an issue, or if you find a workaround for an existing issue, we would very much appreciate it if you could post your question or code as a [GitHub issue](https://github.com/alan-turing-institute/profet/issues). 
+If you run into an issue, or if you find a workaround for an existing issue, we would very much appreciate it if you could post your question or code as a [GitHub issue](https://github.com/ccpem/profet/issues). 
 
 ## Contributions
 
